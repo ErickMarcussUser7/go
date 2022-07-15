@@ -1,53 +1,53 @@
-nombre: Node.js Install Test
+name: Node.js Install Test
 
-en: 
+on: 
   pull_request:
-  lanzamiento:
-    tipos:
-      - Creado
+  release:
+    types:
+      - created
 
-empleos:
+jobs:
   install-ubuntu:
     runs-on: ubuntu-latest
 
-    estrategia:
-      matriz:
-        versión del nodo: [10.x, 12.x, 13.x, 14.x]
+    strategy:
+      matrix:
+        node-version: [10.x, 12.x, 13.x, 14.x]
 
-    pasos:
-    - usos: acciones/checkout@v2
-    - nombre: Use Node.js ${{ matrix.node-version }}
-      usos: actions/setup-node@v1
-      con:
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
         node-version: ${{ matrix.node-version }}
-    - ejecutar: instalación de npm
+    - run: npm install
 
   install-macos:
     runs-on: macos-latest
 
-    estrategia:
-      matriz:
-        versión del nodo: [10.x, 12.x, 13.x, 14.x]
+    strategy:
+      matrix:
+        node-version: [10.x, 12.x, 13.x, 14.x]
 
-    pasos:
-    - usos: acciones/checkout@v2
-    - nombre: Use Node.js ${{ matrix.node-version }}
-      usos: actions/setup-node@v1
-      con:
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
         node-version: ${{ matrix.node-version }}
-    - ejecutar: instalación de npm
+    - run: npm install
 
   install-windows:
     runs-on: windows-latest
 
-    estrategia:
-      matriz:
-        node-version: [10.x, 12.x, 13.x] #14.x no funciona correctamente en las acciones de GitHub
+    strategy:
+      matrix:
+        node-version: [10.x, 12.x, 13.x] #14.x doesn't work properly on GitHub actions
 
-    pasos:
-    - usos: acciones/checkout@v2
-    - nombre: Use Node.js ${{ matrix.node-version }}
-      usos: actions/setup-node@v1
-      con:
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
         node-version: ${{ matrix.node-version }}
-    - ejecutar: instalación de npm
+    - 
