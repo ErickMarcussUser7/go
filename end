@@ -1,0 +1,53 @@
+nombre: Node.js Install Test
+
+en: 
+  pull_request:
+  lanzamiento:
+    tipos:
+      - Creado
+
+empleos:
+  install-ubuntu:
+    runs-on: ubuntu-latest
+
+    estrategia:
+      matriz:
+        versión del nodo: [10.x, 12.x, 13.x, 14.x]
+
+    pasos:
+    - usos: acciones/checkout@v2
+    - nombre: Use Node.js ${{ matrix.node-version }}
+      usos: actions/setup-node@v1
+      con:
+        node-version: ${{ matrix.node-version }}
+    - ejecutar: instalación de npm
+
+  install-macos:
+    runs-on: macos-latest
+
+    estrategia:
+      matriz:
+        versión del nodo: [10.x, 12.x, 13.x, 14.x]
+
+    pasos:
+    - usos: acciones/checkout@v2
+    - nombre: Use Node.js ${{ matrix.node-version }}
+      usos: actions/setup-node@v1
+      con:
+        node-version: ${{ matrix.node-version }}
+    - ejecutar: instalación de npm
+
+  install-windows:
+    runs-on: windows-latest
+
+    estrategia:
+      matriz:
+        node-version: [10.x, 12.x, 13.x] #14.x no funciona correctamente en las acciones de GitHub
+
+    pasos:
+    - usos: acciones/checkout@v2
+    - nombre: Use Node.js ${{ matrix.node-version }}
+      usos: actions/setup-node@v1
+      con:
+        node-version: ${{ matrix.node-version }}
+    - ejecutar: instalación de npm
